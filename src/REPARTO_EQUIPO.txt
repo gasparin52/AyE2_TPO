@@ -1,0 +1,34 @@
+REPARTO DEL EQUIPO
+
+Franco:
+- DiccionarioTareas.java
+- ArbolABB.java
+- ArbolAVL.java
+
+Serena:
+- PilaDeshacer.java
+- MonticuloMaximo.java
+- GrafoDirigido.java
+
+Gaspar:
+- ArbolNArio.java
+- ArbolB.java
+- ColaNotificaciones.java
+
+Servicios compartidos:
+- ProjectService.java
+- WorkPanelService.java
+- IndexService.java
+
+Modelos compartidos:
+- Project.java
+- Module.java
+- Task.java
+- Subtask.java
+- User.java
+- Notification.java
+- LogEntry.java
+- TaskStatus.java
+
+Main compartido:
+- Main.java
