@@ -4,9 +4,19 @@
 
  Este archivo le corresponde a Serena.
 
+ Objetos de model que vas a usar:
+ - model.Task -> la tarea que se guarda en el monticulo
+   (importar con: import model.Task;)
+
+ Campos de Task que te van a ser utiles:
+ - String id
+ - String title
+ - int priority  -> este es el campo por el que se ordena el monticulo
+ - TaskStatus status
+
  Implementacion esperada:
  - monticulo maximo sobre array dinamico
- - orden por Task.priority
+ - orden por Task.priority (prioridad mas alta = primero)
 
  Clase interna o separada esperada:
  - NodoMonticulo

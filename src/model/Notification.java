@@ -1,17 +1,37 @@
-/*
- Modelo compartido.
+package model;
 
- Archivo pedido por la estructura:
- - src/model/Notification.java
+import java.time.LocalDateTime;
 
- Campos que debe tener:
- - String message
- - String targetUserId
- - LocalDateTime timestamp
+// Representa una notificacion que se le manda a un usuario
+// Se guarda en la ColaNotificaciones
+public class Notification {
 
- Constructor esperado:
- - Notification(String message, String targetUserId)
+    private String message;           // el texto de la notificacion
+    private String targetUserId;      // el id del usuario que la recibe
+    private LocalDateTime timestamp;  // cuando se creo la notificacion
 
- Regla importante:
- - timestamp se asigna automaticamente con LocalDateTime.now()
-*/
+    // Constructor: cuando creamos una notificacion, el timestamp se asigna solo
+    public Notification(String message, String targetUserId) {
+        this.message = message;
+        this.targetUserId = targetUserId;
+        this.timestamp = LocalDateTime.now(); // guarda la hora actual automaticamente
+    }
+
+    // Getters
+    public String getMessage() {
+        return message;
+    }
+
+    public String getTargetUserId() {
+        return targetUserId;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + timestamp + "] Para " + targetUserId + ": " + message;
+    }
+}

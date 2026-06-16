@@ -1,29 +1,70 @@
-/*
- Responsable: Franco
- Tema: Conjunto / Diccionario
+package datastructures;
 
- Este archivo le corresponde a Franco.
+import model.Task;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
- Implementacion esperada:
- - wrapper sobre HashMap<String, Task>
- - wrapper sobre HashSet<String>
+public class DiccionarioTareas {
 
- Campos:
- - HashMap<String, Task> mapaTareas
- - HashSet<String> miembrosProyecto
+    private HashMap<String, Task> mapaTareas;
+    private HashSet<String> miembrosProyecto;
 
- Metodos publicos esperados:
- - void agregarTarea(Task tarea)
- - Task obtenerTarea(String taskId)
- - void eliminarTarea(String taskId)
- - boolean contieneTarea(String taskId)
- - void agregarMiembro(String userId)
- - boolean esMiembro(String userId)
- - void eliminarMiembro(String userId)
- - Set<String> obtenerTodosLosMiembros()
- - Collection<Task> obtenerTodasLasTareas()
- - void agregarTagATarea(String taskId, String tag)
+    public DiccionarioTareas() {
+        mapaTareas = new HashMap<>();
+        miembrosProyecto = new HashSet<>();
+    }
 
- Regla importante:
- - agregarTagATarea debe evitar duplicados aunque Task.tags sea List
-*/
+    // --- Metodos de tareas ---
+
+    public void agregarTarea(Task tarea) {
+        mapaTareas.put(tarea.getId(), tarea);
+    }
+
+    public Task obtenerTarea(String taskId) {
+        return mapaTareas.get(taskId);
+    }
+
+    public void eliminarTarea(String taskId) {
+        mapaTareas.remove(taskId);
+    }
+
+    public boolean contieneTarea(String taskId) {
+        return mapaTareas.containsKey(taskId);
+    }
+
+    public Collection<Task> obtenerTodasLasTareas() {
+        return mapaTareas.values();
+    }
+
+    // --- Metodos de miembros ---
+
+    public void agregarMiembro(String userId) {
+        miembrosProyecto.add(userId);
+    }
+
+    public boolean esMiembro(String userId) {
+        return miembrosProyecto.contains(userId);
+    }
+
+    public void eliminarMiembro(String userId) {
+        miembrosProyecto.remove(userId);
+    }
+
+    public Set<String> obtenerTodosLosMiembros() {
+        return miembrosProyecto;
+    }
+
+    // --- Metodo especial de tags ---
+
+    public void agregarTagATarea(String taskId, String tag) {
+        Task tarea = mapaTareas.get(taskId);
+        if (tarea == null) return;
+
+        // Evita duplicados aunque tags sea una List
+        if (!tarea.getTags().contains(tag)) {
+            tarea.getTags().add(tag);
+        }
+    }
+}

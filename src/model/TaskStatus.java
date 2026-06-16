@@ -1,12 +1,11 @@
-/*
- Este archivo debe implementarse como enum.
+package model;
 
- Valores esperados:
- - PENDING
- - IN_PROGRESS
- - BLOCKED
- - DONE
-
- Sugerencia:
- - respetar exactamente estos nombres
-*/
+// Un enum es una lista fija de opciones.
+// En lugar de usar numeros o texto suelto para el estado,
+// usamos esto para evitar errores de tipeo.
+public enum TaskStatus {
+    PENDING,     // pendiente (todavia no se empezo)
+    IN_PROGRESS, // en progreso (se esta trabajando)
+    BLOCKED,     // bloqueada (hay algun impedimento)
+    DONE         // completada
+}
