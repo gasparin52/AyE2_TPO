@@ -26,6 +26,10 @@ public class DiccionarioTareas {
         return mapaTareas.get(taskId);
     }
 
+    public Task obtener(String taskId) {
+        return obtenerTarea(taskId);
+    }
+
     public void eliminarTarea(String taskId) {
         mapaTareas.remove(taskId);
     }

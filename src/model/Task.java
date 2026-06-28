@@ -79,12 +79,28 @@ public class Task {
         this.description = description;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
     public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = new ArrayList<>(tags);
+    }
+
+    public void agregarSubtarea(Subtask subtask) {
+        subtasks.add(subtask);
     }
 
     @Override

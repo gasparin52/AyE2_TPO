@@ -289,6 +289,14 @@ public class ArbolAVL {
         imprimirEnOrdenRecursivo(raiz);
     }
 
+    public int mostrarAltura() {
+        return altura(raiz);
+    }
+
+    public int factorEquilibrio() {
+        return factorBalance(raiz);
+    }
+
     private void imprimirEnOrdenRecursivo(NodoAVL nodo) {
         if (nodo == null) return;
         imprimirEnOrdenRecursivo(nodo.izquierdo);

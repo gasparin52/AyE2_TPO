@@ -56,6 +56,73 @@ public class GrafoDirigido {
     }
 
     public void agregarDependencia(String tareaOrigenId, String tareaDestinoId) {
+        agregarVertice(tareaOrigenId);
+        agregarVertice(tareaDestinoId);
+        listaAdyacencia.get(tareaOrigenId).add(tareaDestinoId);
+        if (tieneCiclos()) {
+            listaAdyacencia.get(tareaOrigenId).remove(tareaDestinoId);
+            throw new IllegalArgumentException("No se puede agregar la dependencia: genera un ciclo infinito en el proyecto.");
+        }
+    }
+
+    public void agregarVertice(String taskId) {
+        listaAdyacencia.putIfAbsent(taskId, new ArrayList<>());
+    }
+
+    public void agregarArista(String tareaOrigenId, String tareaDestinoId) {
+        agregarDependencia(tareaOrigenId, tareaDestinoId);
+    }
+
+    public List<String> bfs(String origenId) {
+        List<String> recorrido = new ArrayList<>();
+        if (!listaAdyacencia.containsKey(origenId)) {
+            return recorrido;
+        }
+
+        List<String> cola = new ArrayList<>();
+        Map<String, Boolean> visitados = new HashMap<>();
+        cola.add(origenId);
+        visitados.put(origenId, true);
+
+        int indiceActual = 0;
+        while (indiceActual < cola.size()) {
+            String actual = cola.get(indiceActual++);
+            recorrido.add(actual);
+
+            for (String vecino : listaAdyacencia.getOrDefault(actual, new ArrayList<>())) {
+                if (!visitados.containsKey(vecino)) {
+                    visitados.put(vecino, true);
+                    cola.add(vecino);
+                }
+            }
+        }
+
+        return recorrido;
+    }
+
+    public List<String> dfs(String origenId) {
+        List<String> recorrido = new ArrayList<>();
+        if (!listaAdyacencia.containsKey(origenId)) {
+            return recorrido;
+        }
+
+        Map<String, Boolean> visitados = new HashMap<>();
+        dfsRecursivo(origenId, visitados, recorrido);
+        return recorrido;
+    }
+
+    private void dfsRecursivo(String actual, Map<String, Boolean> visitados, List<String> recorrido) {
+        visitados.put(actual, true);
+        recorrido.add(actual);
+
+        for (String vecino : listaAdyacencia.getOrDefault(actual, new ArrayList<>())) {
+            if (!visitados.containsKey(vecino)) {
+                dfsRecursivo(vecino, visitados, recorrido);
+            }
+        }
+    }
+
+    public void agregarDependenciaLegacy(String tareaOrigenId, String tareaDestinoId) {
         listaAdyacencia.putIfAbsent(tareaOrigenId, new ArrayList<>());
         listaAdyacencia.putIfAbsent(tareaDestinoId, new ArrayList<>());
         listaAdyacencia.get(tareaOrigenId).add(tareaDestinoId);
